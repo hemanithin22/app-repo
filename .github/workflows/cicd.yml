@@ -27,7 +27,7 @@ jobs:
 
       - name: Update infra repo deployment
         run: |
-          git clone https://x-access-token:${GITHUB_TOKEN}@github.com/hemanithin22/Xops.git infra
+          git clone https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/hemanithin22/Xops.git infra
           cd infra/Task-6/k8n
           sed -i "s|image: .*|image: ${{ secrets.DOCKER_USERNAME }}/app:latest|" deployment.yaml
           git config user.name "github-actions[bot]"
@@ -35,5 +35,3 @@ jobs:
           git add deployment.yaml
           git commit -m "Update image to latest"
           git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
