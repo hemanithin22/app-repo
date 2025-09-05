@@ -29,7 +29,7 @@ jobs:
         run: |
           git clone https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/hemanithin22/Xops.git infra
           cd infra/Task-6/k8n
-          sed -i "s|image: .*|image: ${{ secrets.DOCKER_USERNAME }}/app:latest|" deployment.yaml
+          sed -i "s|image: .*|image: ${{ secrets.DOCKER_USERNAME }}/app:${{ github.sha }}|" deployment.yaml
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add deployment.yaml
